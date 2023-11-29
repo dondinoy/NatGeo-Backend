@@ -1,0 +1,12 @@
+### get all articles:
+GET http://localhost:8080/api/v1/article
+
+### add a article:
+POST http://localhost:8080//api/v1/article
+Content-Type: application/json
+
+{
+  "title":"Learn Spring Data Jpa",
+  "description":"@MIN @MAX Annotation",
+  "content":"Some Annotation"
+}
