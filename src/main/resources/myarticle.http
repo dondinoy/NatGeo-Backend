@@ -1,12 +1,91 @@
+### add a Article:
+POST http://localhost:8080/api/v1/articles
+Content-Type: application/json
+Authorization: bearer {{adminJWT}}
+
+{
+  "description": "@l23422 wwww@l 234l",
+  "content": "ww34ww l22342",
+  "title": "l w34ww lll 2l2342"
+}
+### add a tag to article:
+POST http://localhost:8080/api/v1/tags/402
+Content-Type: application/json
+Authorization: bearer {{adminJWT}}
+
+{
+  "name": "Tigers"
+}
+
 ### get all articles:
-GET http://localhost:8080/api/v1/article
+GET http://localhost:8080/api/v1/articles
+Authorization: bearer {{adminJWT}}
 
 ### add a article:
-POST http://localhost:8080//api/v1/article
+POST http://localhost:8080/api/v1/articles
 Content-Type: application/json
 
 {
-  "title":"Learn Spring Data Jpa",
-  "description":"@MIN @MAX Annotation",
-  "content":"Some Annotation"
+  "description": "@l wwww@l l",
+  "content": "wwww l",
+  "title": "l www lll l",
+  "tags": {}
+}
+
+### get all articles:
+GET http://localhost:8080/api/v1/articles
+Authorization: bearer {{adminJWT}}
+
+//get pages
+### GET ALL Articles pagination:
+GET http://localhost:8080/api/v1/articles?pageNo=1&pageSize=2&sortDir=asc
+
+###
+PUT http://localhost:8080/api/v1/articles/402
+Content-Type: application/json
+Authorization: bearer {{adminJWT}}
+
+{
+  "description": "@MIwMAX22",
+  "content": "Somwf 22",
+  "title": "Learwaaaa22"
+}
+
+###
+DELETE http://localhost:8080/api/v1/articles/353
+Authorization: bearer {{adminJWT}}
+
+###register a user:
+POST http://localhost:8080/api/v1/auth/register
+Content-Type: application/json
+Authorization: bearer {{adminJWT}}
+
+{
+  "username": "Mosh",
+  "email": "Mosy@gmail.com",
+  "password": "Passw0rd1!"
+}
+
+
+### Demo Authenticated user details:
+GET http://localhost:8080/api/v1/auth/me
+Authorization: bearer {{adminJWT}}
+
+###login as admin:
+POST http://localhost:8080/api/v1/auth/login
+Content-Type: application/json
+
+{
+  "username": "admin",
+  "password": "Passw0rd1!"
+}
+
+###login as user:
+POST http://localhost:8080/api/v1/auth/login
+Content-Type: application/json
+Authorization: bearer {{userJWT}}
+
+{
+  "username": "user",
+  "password": "Passw0rd1!"
 }

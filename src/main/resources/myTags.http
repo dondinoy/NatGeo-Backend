@@ -1,0 +1,31 @@
+### add a tag:
+POST http://localhost:8080/api/v1/tags
+Content-Type: application/json
+Authorization: bearer {{adminJWT}}
+
+{
+  "name": "London"
+}
+
+###Get All tags
+GET http://localhost:8080/api/v1/tags
+Content-Type: application/json
+Authorization: bearer {{adminJWT}}
+
+###Get Tag By Id
+GET http://localhost:8080/api/v1/tags/202
+Content-Type: application/json
+Authorization: bearer {{adminJWT}}
+
+###
+PUT http://localhost:8080/api/v1/tags/203
+Content-Type: application/json
+Authorization: bearer {{adminJWT}}
+
+{
+  "name": "NY"
+}
+
+###delete tag
+DELETE http://localhost:8080/api/v1/tags/152
+Authorization: bearer {{adminJWT}}

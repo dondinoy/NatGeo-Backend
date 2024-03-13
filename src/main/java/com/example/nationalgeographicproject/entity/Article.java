@@ -1,35 +1,45 @@
 package com.example.nationalgeographicproject.entity;
 
-import com.example.nationalgeographicproject.dto.CreateArticleDto;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+import org.hibernate.proxy.HibernateProxy;
 
+import java.util.*;
+
+@AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
+@Builder
 @Entity
-@Table(uniqueConstraints ={@UniqueConstraint(columnNames = "title")})
+@Table(name = "Article", uniqueConstraints = {
+        @UniqueConstraint(columnNames = {"title"})
+})
 public class Article {
 
     @Id
     @GeneratedValue
+    @Column(nullable = false)
     private Long id;
     @NotNull
     private String title;
-    @NotNull
-    private String category;
     @NotNull
     private String description;
     @NotNull
     private String content;
 
-    public Article(Long id, CreateArticleDto dto){
-        this.id=id;
-        this.title=dto.getTitle();
-        this.description=dto.getDescription();
-        this.content=dto.getContent();
-    }
+    @Getter
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "article_tags",
+            joinColumns = @JoinColumn(name = "article_id"),
+            inverseJoinColumns = @JoinColumn(name = "tag_id")
+    )
+    private Set<Tag> tags = new HashSet<>();;
+
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private Category category;
+
 }

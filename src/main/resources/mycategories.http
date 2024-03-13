@@ -1,0 +1,38 @@
+### add a Catagory:
+POST http://localhost:8080/api/v1/categories
+Content-Type: application/json
+Authorization: bearer {{adminJWT}}
+
+{
+  "name": "Travelsssssss",
+  "articles": []
+}
+
+### add a article to category:
+POST http://localhost:8080/api/v1/articles/353
+Content-Type: application/json
+Authorization: bearer {{adminJWT}}
+
+{
+  "description": "@MIwMsss987AavssaaadssX2s32",
+  "content": "Somsssdcs987sssawf 2s23",
+  "title": "Learssswssaf987aasfccsaa2s23"
+}
+
+###updateCatagoryName
+PUT http://localhost:8080/api/v1/categories/152
+Content-Type: application/json
+Authorization: bearer {{adminJWT}}
+
+{
+  "name": "HistoryAndCulture"
+}
+
+### get all catgories:
+GET http://localhost:8080/api/v1/categories
+Authorization: bearer {{adminJWT}}
+
+###
+DELETE http://localhost:8080/api/v1/categories/402
+Authorization: bearer {{adminJWT}}
+

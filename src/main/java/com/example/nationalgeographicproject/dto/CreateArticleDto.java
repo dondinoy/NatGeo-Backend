@@ -1,15 +1,17 @@
 package com.example.nationalgeographicproject.dto;
 
 
+import com.example.nationalgeographicproject.entity.Tag;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
-@Getter
-@Setter
+import java.util.Collection;
+
+@Data
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class CreateArticleDto {
     @NotNull
     @Size(min = 4, max = 300)
@@ -20,4 +22,5 @@ public class CreateArticleDto {
     @NotNull
     @Size(min = 4)
     private String content;
+
 }
