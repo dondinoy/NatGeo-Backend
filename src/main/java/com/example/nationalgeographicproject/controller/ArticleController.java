@@ -22,6 +22,7 @@ public class ArticleController {
     private final ArticleService articleService;
     private final ArticleRepository articleRepository;
 
+    @CrossOrigin(origins = "http://localhost:5174")
     @GetMapping
     public ResponseEntity<Collection<ArticleResponseDto>> getAll(){
         var res = articleService.getAll();
@@ -51,7 +52,7 @@ public class ArticleController {
         return ResponseEntity.created(uri.toUri()).body(saved);
     }
 
-    @GetMapping("/(id)")
+    @GetMapping("/{id}")
     public ResponseEntity <ArticleResponseDto> getArticleById(
             @PathVariable Long id){
         return ResponseEntity.ok(articleService.getArticleById(id));

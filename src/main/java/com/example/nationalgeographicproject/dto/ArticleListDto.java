@@ -12,7 +12,7 @@ import java.util.Collection;
 @AllArgsConstructor
 @Builder
 public class ArticleListDto {
-    private long totalPosts;
+    private long totalArticles;
     private int pageNo;
     private int pageSize;
     private int totalPages;

@@ -4,19 +4,19 @@ Content-Type: application/json
 Authorization: bearer {{adminJWT}}
 
 {
-  "name": "Travelsssssss",
+  "name": "Travelssshhsssssss",
   "articles": []
 }
 
 ### add a article to category:
-POST http://localhost:8080/api/v1/articles/353
+POST http://localhost:8080/api/v1/articles/303
 Content-Type: application/json
 Authorization: bearer {{adminJWT}}
 
 {
-  "description": "@MIwMsss987AavssaaadssX2s32",
-  "content": "Somsssdcs987sssawf 2s23",
-  "title": "Learssswssaf987aasfccsaa2s23"
+  "title": "How AI is helping scientists protect birds",
+  "description":" As bird numbers fall worldwide, scientists and birders are using algorithm-powered apps to gather valuable data about avian species.2",
+  "content": "Somsssdcdsfs987sssawf 2s23"
 }
 
 ###updateCatagoryName

@@ -1,17 +1,17 @@
 ### add a Article:
-POST http://localhost:8080/api/v1/articles
+POST http://localhost:8080/api/v1/articles/452
 Content-Type: application/json
 Authorization: bearer {{adminJWT}}
 
 {
-  "description": "@l23422 wwww@l 234l",
-  "content": "ww34ww l22342",
-  "title": "l w34ww lll 2l2342"
+  "description": "@l234asdas22 wwww@l 234l",
+  "content": "ww34wasdasw l22342",
+  "title": "l w34wsadasdasdw lll 2l2342"
 }
 ### add a tag to article:
 POST http://localhost:8080/api/v1/tags/402
 Content-Type: application/json
-Authorization: bearer {{adminJWT}}
+Authorization: bearer {{userJWT}}
 
 {
   "name": "Tigers"
@@ -22,19 +22,18 @@ GET http://localhost:8080/api/v1/articles
 Authorization: bearer {{adminJWT}}
 
 ### add a article:
-POST http://localhost:8080/api/v1/articles
+POST http://localhost:8080/api/v1/articles/452
 Content-Type: application/json
 
 {
-  "description": "@l wwww@l l",
-  "content": "wwww l",
-  "title": "l www lll l",
+  "description": "@lxzczx wdddwww@l l",
+  "content": "wwwddssxzczxcedvw l",
+  "title": "l www lsdxzcxzcfsfsxzdsxzdll l",
   "tags": {}
 }
 
 ### get all articles:
 GET http://localhost:8080/api/v1/articles
-Authorization: bearer {{adminJWT}}
 
 //get pages
 ### GET ALL Articles pagination:
@@ -61,9 +60,9 @@ Content-Type: application/json
 Authorization: bearer {{adminJWT}}
 
 {
-  "username": "Mosh",
-  "email": "Mosy@gmail.com",
-  "password": "Passw0rd1!"
+  "username": "Mike3",
+  "email": "Mike3@gmail.com",
+  "password": "Mike3@gmail.com"
 }
 
 
@@ -83,7 +82,6 @@ Content-Type: application/json
 ###login as user:
 POST http://localhost:8080/api/v1/auth/login
 Content-Type: application/json
-Authorization: bearer {{userJWT}}
 
 {
   "username": "user",

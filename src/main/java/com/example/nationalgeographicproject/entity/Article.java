@@ -1,5 +1,6 @@
 package com.example.nationalgeographicproject.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
@@ -31,6 +32,7 @@ public class Article {
 
     @Getter
     @ManyToMany(fetch = FetchType.EAGER)
+    @JsonIgnore
     @JoinTable(
             name = "article_tags",
             joinColumns = @JoinColumn(name = "article_id"),
@@ -39,6 +41,7 @@ public class Article {
     private Set<Tag> tags = new HashSet<>();;
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "category_id")
     private Category category;
 

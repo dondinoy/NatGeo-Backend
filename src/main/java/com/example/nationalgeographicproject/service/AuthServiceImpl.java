@@ -8,6 +8,10 @@ import com.example.nationalgeographicproject.entity.User;
 import com.example.nationalgeographicproject.error.AuthenticationException;
 import com.example.nationalgeographicproject.error.UserAlreadyExistsException;
 import com.example.nationalgeographicproject.repository.RoleRepository;import com.example.nationalgeographicproject.repository.UserRepository;
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.Validation;
+import jakarta.validation.Validator;
+import jakarta.validation.ValidatorFactory;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -55,19 +59,33 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     public UserResponseDto register(UserRequestDto dto) {
+
         //check that the user does not exist email/username:
-        userRepository.findUserByUsernameIgnoreCaseOrEmailIgnoreCase(dto.username(), dto.email()).ifPresent((u) -> {
+        userRepository.findUserByUsernameIgnoreCaseOrEmailIgnoreCase(dto.getUsername(), dto.getEmail()).ifPresent((u) -> {
             throw new UserAlreadyExistsException(u.getUsername(), u.getEmail());
         });
 
+//        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+//        Validator validator = factory.getValidator();
+//        Set<ConstraintViolation<UserRequestDto>> violations = validator.validate(dto);
+//
+//        // Check for validation violations
+//        if (!violations.isEmpty()) {
+//            // Handle validation errors
+//            throw new IllegalArgumentException("Validation failed for UserRequestDto: " + violations);
+//        }
+
         var user = modelMapper.map(dto, User.class);
+        System.out.println("1. service. username:"+user.getUsername());
         //encrypt password
-        user.setPassword(passwordEncoder.encode(dto.password()));
+        user.setPassword(passwordEncoder.encode(dto.getPassword()));
 
         var role = roleRepository.findRoleByNameIgnoreCase("ROLE_USER").orElseThrow();
         user.setRoles(Set.of(role));
-
+        System.out.println("2. service.user email:"+user.getEmail());
+        System.out.println("3. service.user password:"+user.getPassword());
         var saved = userRepository.save(user);
+        System.out.println("4. service:"+user);
 
         return modelMapper.map(saved, UserResponseDto.class);
     }

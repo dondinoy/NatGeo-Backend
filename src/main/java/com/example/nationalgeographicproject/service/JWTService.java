@@ -33,7 +33,7 @@ public class JWTService {
                 .issuer("self")
                 .issuedAt(now)
                 .subject(authentication.getName())
-                .expiresAt(now.plus(1, ChronoUnit.HOURS))
+                .expiresAt(now.plus(1, ChronoUnit.DAYS))
                 .claim("scope", scope)
                 .build();
 

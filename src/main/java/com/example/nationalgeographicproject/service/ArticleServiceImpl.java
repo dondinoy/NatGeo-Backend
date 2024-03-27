@@ -27,8 +27,11 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public ArticleResponseDto addArticle(long categoryId, CreateArticleDto dto) {
+        System.out.println("addArticle. dto:"+dto);
         var entity = modelMapper.map(dto, Article.class);
-
+        System.out.println("addArticle. article category:"+entity.getCategory());
+        System.out.println("addArticle. article title:"+entity.getTitle());
+        System.out.println("addArticle. article desc.:"+entity.getDescription());
         // Find the category by its ID
         var category = categoryRepository.findById(categoryId)
                 .orElseThrow(() -> new EntityNotFoundException("Category not found with id: " + categoryId));

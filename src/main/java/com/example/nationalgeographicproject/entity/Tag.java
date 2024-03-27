@@ -24,6 +24,7 @@ public class Tag {
     private String name;
 
     @ManyToMany(mappedBy = "tags", fetch = FetchType.LAZY)
+    @JsonIgnore
     private Set<Article> articles = new HashSet<>();
 
 }
