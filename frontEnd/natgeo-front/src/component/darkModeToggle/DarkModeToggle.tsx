@@ -1,53 +1,53 @@
-import { useState } from "react";
-import "./DarkModeToggle.module.scss"
-import { FaMoon, FaSun } from "react-icons/fa";
+// import { useState } from "react";
+// import "./DarkModeToggle.module.scss"
+// import { FaMoon, FaSun } from "react-icons/fa";
 
-const DarkModeToggle = () => {
+// const DarkModeToggle = () => {
 
-  //read the value from localStorage
+//   //read the value from localStorage
 
-  const saved = localStorage.getItem("mode") === "dark";
-
- 
-
-  //if saved == true => add dark to <body class="dark"
-
-  saved && document.body.classList.add("dark");
+//   const saved = localStorage.getItem("mode") === "dark";
 
  
 
-  //state for the icon
+//   //if saved == true => add dark to <body class="dark"
 
-  const [isDark, setDark] = useState(saved);
-
- 
-
-  const toggleTheme = () => {
-
-    //change the icon
-
-    setDark((p) => !p);
-
-    //change body class
-
-    document.body.classList.toggle("dark");
-
-    //save the change to local storage
-
-    localStorage.setItem("mode", !isDark ? "dark" : "");
-
-  };
+//   saved && document.body.classList.add("dark");
 
  
 
-  return (
+//   //state for the icon
 
-    <button onClick={toggleTheme}>{isDark ? <FaSun  /> : <FaMoon />}</button>
-
-  );
-
-};
+//   const [isDark, setDark] = useState(saved);
 
  
 
-export default DarkModeToggle;
+//   const toggleTheme = () => {
+
+//     //change the icon
+
+//     setDark((p) => !p);
+
+//     //change body class
+
+//     document.body.classList.toggle("dark");
+
+//     //save the change to local storage
+
+//     localStorage.setItem("mode", !isDark ? "dark" : "");
+
+//   };
+
+ 
+
+//   return (
+
+//     <button onClick={toggleTheme}>{isDark ? <FaSun  /> : <FaMoon />}</button>
+
+//   );
+
+// };
+
+ 
+
+// export default DarkModeToggle;

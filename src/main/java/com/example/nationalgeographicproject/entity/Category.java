@@ -26,4 +26,8 @@ public class Category {
     @JsonIgnore
     private Set<Article> articles=new HashSet<>();
 
+    public Category(Long id) {
+        this.id = id;
+    }
+
 }

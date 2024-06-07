@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
 import { Dialogs } from "../../ui/dialogs";
 import InputField from "../../component/inputFields/RegistationInputField";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { Auth } from "../../services/auth-service";
 
 export type RegisterRequest = {
@@ -34,12 +34,13 @@ const Register = () => {
   };
 
   return (
-    <>
-      <h1 className="text-center text-lg my-2">Sign up</h1>
+    <div className="flex flex-col  bg-black h-full justify-center">
+      <div className="flex flex-col p-9 justify-center">
+      <h1 className="text-center text-5xl  text-yellow-400">Sign Up</h1>
       <form
         onSubmit={handleSubmit(onSubmit)}
         noValidate
-        className="flex flex-col gap-5 w-1/1 mx-4 md:w-1/2 md:mx-auto shadow-2xl rounded-xl p-5 text-xl"
+        className="flex flex-col gap-5 w-1/1 mx-4 md:w-1/2 md:mx-auto shadow-2xl rounded-xl p-9 text-xl"
       >
         <InputField
           autoComplete="username"
@@ -71,14 +72,21 @@ const Register = () => {
           }}
         />
         <input
-          className="rounded-md bg-blue-500 text-white p-2"
+          className="rounded-md bg-yellow-400  text-black p-2"
           type="submit"
           value="Register"
         />
+        <div className="text-center text-yellow-400">
+          <p>Already a member?</p>
+          <NavLink to={"/login"}>Login</NavLink>
+        </div>
       </form>
 
       <DevTool control={control} />
-    </>
+    </div>
+
+    </div>
+    
   );
 };
 

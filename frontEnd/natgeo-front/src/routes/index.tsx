@@ -12,7 +12,11 @@ import Animals from "./menuRouts/Animals";
 import Scince from "./menuRouts/Scince";
 import HisAndCul from "./menuRouts/HisAndCul";
 import Environment from "./menuRouts/Environment";
-
+import CreatePage from "./crud/CreatePage"
+import UpdatePage from "./crud/UpdatePage";
+import HomePage from "./homepage/HomePage";
+import SearchBar from "../component/search/SearchBar";
+import ProtectedRoute from "../component/ProtectedRoute";
 
 export const routes: RouteObject[] = [
 
@@ -31,17 +35,17 @@ export const routes: RouteObject[] = [
   },
   {
     path:"/animals",
-    element:<Animals />,
+    element:<ProtectedRoute><Animals /></ProtectedRoute>,
   },{
     path:"/scince",
-    element:<Scince />,
+    element:<ProtectedRoute> <Scince /> </ProtectedRoute>,
   },
     {
     path:"/history",
-    element:<HisAndCul />,
+    element:<ProtectedRoute><HisAndCul /></ProtectedRoute>,
   },{
     path:"/environment",
-    element:<Environment />,
+    element:<ProtectedRoute><Environment /></ProtectedRoute>,
   },
   {
     path:"/login",
@@ -60,13 +64,31 @@ export const routes: RouteObject[] = [
   },
   {
     path:"/article/:id",
-    element:<Article />,
+    element:<ProtectedRoute><Article /></ProtectedRoute>,
     errorElement:<ArticleIdError />
   },
   {
     path:"/error",
     element:<ErrorPage />,
+  }
+  ,
+  {
+    path:"/createPage",
+    element:<CreatePage />,
   },
+  {
+    path:"/updatePage/:id",
+    element:<UpdatePage />,
+  },
+  {
+    path:"/homepage",
+    element:<HomePage />,
+  },
+  {
+    path:"/search",
+    element:<SearchBar setResults={ undefined } />,
+  }
+
 ]
 },
 ];

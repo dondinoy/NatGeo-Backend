@@ -27,6 +27,7 @@ public class Article {
     private String title;
     @NotNull
     private String description;
+    @Lob
     @NotNull
     private String content;
 
@@ -44,5 +45,10 @@ public class Article {
     @JsonIgnore
     @JoinColumn(name = "category_id")
     private Category category;
+
+    @Lob
+    @Column(name = "image_data",columnDefinition = "MEDIUMBLOB")
+    private byte[] imageData;
+
 
 }

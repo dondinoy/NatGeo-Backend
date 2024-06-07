@@ -1,54 +1,82 @@
-import React, { useState } from 'react'
-import { Category as CategoryType } from '../../@types/types';
-import { useParams } from 'react-router';
-import { CategoryService } from '../../services/category_service';
-import Spinner from '../../component/Spinner';
-import CategoryItem from '../article/CategoryItem';
-
+import React, { useContext, useEffect, useState } from "react";
+import { Category as CategoryType } from "../../@types/types";
+import { CategoryService } from "../../services/category_service";
+import Spinner from "../../component/Spinner";
+import CategoryItem from "../category/CategoryItem";
+import { Card } from "../../component/card/Card";
+import { NavLink } from "react-router-dom";
+import { AuthContext } from "../../context/AuthConext";
 
 const Animals = () => {
-  const [category,setCategory]=useState<CategoryType|undefined>();
+  const [category, setCategory] = useState<CategoryType | undefined>();
+
   const [error, setError] = useState<string>();
   const [loading, setLoading] = useState(false);
 
-  const {id}= useParams()
-  const feetchData=async()=>{
-    try{
-    const res= await CategoryService.getCategory(id!);
-    console.log(res);
-    setCategory(res);
-    }catch(e){
-    console.log(e)
-      // if(
-      //   e != null &&
-      //     typeof e == "object" &&
-      //     "message" in e &&
-      //     typeof e["message"] == "string"
-      //   )
-      if (e instanceof Error) {
-         setError(e.message);
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      try {
+        const res = await CategoryService.getCategoriesAxios();
+        const category = res.find(
+          (category: { id: number }) => category.id === 303
+        );
+        if (category) {
+          setCategory(category);
+        } else {
+          setError("Category not found");
         }
-        // setError(e.message as string);
-    }finally{
-    setLoading(false)
-    }
-  };
-  if(id && !category)
-      feetchData();
+      } catch (e) {
+        console.error(e);
+        if (e instanceof Error) {
+          setError(e.message);
+        }
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+  const { role } = useContext(AuthContext);
 
 
   return (
     <div>
+      <div
+        className="p-5 text-center bg-image rounded-3"
+         style={{
+          backgroundImage: "url('src/assets/animalsheader.jpg')",
+          backgroundPosition: "center",
+          backgroundSize: "cover",
+          backgroundRepeat: "no-repeat",
+          height: "400px",
+          width:"100%",
+        }}
+      >
+        
+      </div>
+   
+      {role == "ROLE_ADMIN" && (
+        <NavLink to={"/createPage/"} className="btn btn-primary">
+          Create New article
+        </NavLink>
+      )}
+      {/* <h2>{JSON.stringify(category)}</h2> */}
       {loading && <Spinner />}
       {error && <div>Error: {error}</div>}
       {!error && !loading && (
-        <div>
-      {category &&  <CategoryItem key={category.id} {...category} /> }
+      
+      <div style={{    display: "flex",
+      flexDirection: "row",
+      alignItems: "center",
+      justifyContent: "center",
+      flexWrap: "wrap"}}>
+          {category && <CategoryItem key={category.id} {...category} />}
         </div>
       )}
     </div>
-  )
+  );
 };
 
 export default Animals;
-

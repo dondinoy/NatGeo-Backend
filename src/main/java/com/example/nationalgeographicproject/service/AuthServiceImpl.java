@@ -47,7 +47,6 @@ public class AuthServiceImpl implements AuthService {
         }
 
         Authentication authentication = new UsernamePasswordAuthenticationToken(
-                user.getUsername(),
                 user.getPassword(),
                 user.getRoles().stream().map(r -> new SimpleGrantedAuthority(r.getName())).toList()
         );

@@ -2,25 +2,26 @@ package com.example.nationalgeographicproject.service;
 
 import com.example.nationalgeographicproject.dto.ArticleResponseDto;
 import com.example.nationalgeographicproject.dto.CreateArticleDto;
-import org.springframework.stereotype.Service;
+import com.example.nationalgeographicproject.entity.Article; // Correct import
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.Collection;
 
-@Service
 public interface ArticleService {
 
+    ArticleResponseDto addArticleToCategory(long categoryId, CreateArticleDto dto, MultipartFile imageFile) throws IOException;
 
-    ArticleResponseDto addArticle(long categoryId, CreateArticleDto dto);
+    Article saveArticle(Article article); // Correct method signature
+    ArticleResponseDto addArticle(CreateArticleDto dto, MultipartFile imageFile) throws IOException;
 
-    //add a post: get a request dto ->
-    Collection<ArticleResponseDto> getAll();
+    Collection<ArticleResponseDto> getAllArticles();
+
     Collection<ArticleResponseDto> getPage(int pageNo, int pageSize);
+
     ArticleResponseDto getArticleById(long id);
 
     ArticleResponseDto updateArticleById(long id, CreateArticleDto dto);
 
     ArticleResponseDto deleteArticleById(long id);
-
-    // save the entity
-    // return a response dto
 }

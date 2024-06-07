@@ -25,7 +25,7 @@ const RegistationInputField = <T extends FieldValues>({
   return (
     <div className="p-2">
       <input
-        className="rounded-md p-2 w-full border-2 border-blue-300"
+        className=" bg-black rounded-md p-2 w-full border-2 border-slate-800 text-yellow-300"
         placeholder={`${name}`}
         {...rest}
         {...register(name, {

@@ -14,6 +14,7 @@ async function register(body: RegisterRequest) {
   });
 
   const json = await res.json();
+ 
 
   if (!res.ok) {
     throw json;

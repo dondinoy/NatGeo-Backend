@@ -4,7 +4,7 @@ Content-Type: application/json
 Authorization: bearer {{adminJWT}}
 
 {
-  "name": "Travelssshhsssssss",
+  "name": "Travelssshhsssssssssssssss",
   "articles": []
 }
 
@@ -14,9 +14,9 @@ Content-Type: application/json
 Authorization: bearer {{adminJWT}}
 
 {
-  "title": "How AI is helping scientists protect birds",
-  "description":" As bird numbers fall worldwide, scientists and birders are using algorithm-powered apps to gather valuable data about avian species.2",
-  "content": "Somsssdcdsfs987sssawf 2s23"
+  "title": "226How AI is helping scientists protect birds",
+  "description":"26<h2>As bird numbers fall worldwide, scientists and birders are using algorithm-powered apps to<br/> gather valuable data about avian species.</h2>",
+  "content": "222<br><br><br>4Each spring, scientists hide more than 1,600 lunchbox-size recorders across the lush<br/><br/><br/>forests of the Sierra Nevada range in the western U.S.<br/><br/><br/>Until they’re retrieved at summer’s end, these devices record a million hours of audio,<br/><br/><br/>  which often contains the hoots, barks, and whistles of the California spotted owl—<br/><br/><br/> valuable information about where the endangered species spends its time. But it’s a lot<br/><br/><br/>  of recordings for a human to sift through.<br/><br/><br/> There's no way we can listen to that—not even close, right? says Connor Wood, a<br/><br/><br/>  research associate who co-leads the owl project at the K. Lisa Yang Center for Conservation Bioacoustics, part of the Cornell Lab of Ornithology in Ithaca, New York.It turns out this team actually can process this deluge of data—they just need a little help from BirdNET, an AI-powered system launched in 2018 that can identify more than 6,000 species of birds across the globe just by their calls.We need tools that are really flexible and capable of identifying as many acoustically active animals as possible,says Wood, whose lab developed BirdNET with the Chemnitz University of Technology in Germany. I really can't overstate how transformative [BirdNET is for the field of bioacoustics."
 }
 
 ###updateCatagoryName
@@ -33,6 +33,6 @@ GET http://localhost:8080/api/v1/categories
 Authorization: bearer {{adminJWT}}
 
 ###
-DELETE http://localhost:8080/api/v1/categories/402
+DELETE http://localhost:8080/api/v1/categories/853
 Authorization: bearer {{adminJWT}}
 

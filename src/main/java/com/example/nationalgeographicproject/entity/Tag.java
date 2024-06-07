@@ -3,7 +3,6 @@ package com.example.nationalgeographicproject.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.proxy.HibernateProxy;
 
 import java.util.*;
 

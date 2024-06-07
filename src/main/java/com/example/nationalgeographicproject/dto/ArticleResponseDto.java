@@ -26,4 +26,7 @@ public class ArticleResponseDto {
     private LocalDateTime updatedAt;
 
     private Collection<Tag>tags;
+    private String imageData;
+//    private String imageName;
+
 }

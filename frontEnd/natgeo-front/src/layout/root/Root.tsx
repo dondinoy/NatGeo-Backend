@@ -4,12 +4,11 @@ import Navbar from "../../component/navbar/Navbar";
 const Root = () => {
   
   return (
-
     <div className="min h-screen flex flex-col ">
       <Navbar/>
-      <main className="flex-1">
-        <Outlet></Outlet>
-      </main>
+        <main className="flex-1">
+          <Outlet></Outlet>
+        </main>
       <Footer />
     </div>
 

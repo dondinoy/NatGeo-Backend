@@ -14,6 +14,7 @@ export type ArticlePage = {
 };
 
 export type Article = {
+  imageData: string;
   id: number;
   title: string;
   content: string;

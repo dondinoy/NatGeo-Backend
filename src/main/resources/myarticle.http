@@ -21,14 +21,27 @@ Authorization: bearer {{userJWT}}
 GET http://localhost:8080/api/v1/articles
 Authorization: bearer {{adminJWT}}
 
-### add a article:
+### add a article to category:
 POST http://localhost:8080/api/v1/articles/452
 Content-Type: application/json
 
 {
-  "description": "@lxzczx wdddwww@l l",
-  "content": "wwwddssxzczxcedvw l",
-  "title": "l www lsdxzcxzcfsfsxzdsxzdll l",
+  "description": "@lxzZZZczx wdddwww@l l",
+  "content": "wwwddssZZZxzczxcedvw l",
+  "title": "l www lsdxzZZZcxzcfsfsxzdsxzdll l",
+  "tags": {}
+}
+
+### add a article  :
+POST http://localhost:8080/api/v1/articles
+Content-Type: application/json
+Authorization: bearer {{adminJWT}}
+
+{
+  "description": "222s22@lxzczx wddZZZZZZZZdwww@l l",
+  "content": "22s222wwwddssxzczxcedZZZZZZvw l",
+  "title": "222s22l www lsdxzcxzcfsfZZZZZZZZsxzdsxzdll l",
+  "imageData": [],
   "tags": {}
 }
 
@@ -40,18 +53,18 @@ GET http://localhost:8080/api/v1/articles
 GET http://localhost:8080/api/v1/articles?pageNo=1&pageSize=2&sortDir=asc
 
 ###
-PUT http://localhost:8080/api/v1/articles/402
+PUT http://localhost:8080/api/v1/articles/2056
 Content-Type: application/json
 Authorization: bearer {{adminJWT}}
 
 {
-  "description": "@MIwMAX22",
-  "content": "Somwf 22",
-  "title": "Learwaaaa22"
+  "description": "@wwwwwwwwwwwwwwwwww",
+  "content": "worknowwww 22",
+  "title": "wwwwwwwwwwwwww"
 }
 
 ###
-DELETE http://localhost:8080/api/v1/articles/353
+DELETE http://localhost:8080/api/v1/articles/1052
 Authorization: bearer {{adminJWT}}
 
 ###register a user:

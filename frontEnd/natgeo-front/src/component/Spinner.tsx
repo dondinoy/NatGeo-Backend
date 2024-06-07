@@ -1,8 +1,10 @@
-import { RingLoader } from 'react-spinners'
+import { BarLoader, BounceLoader, CircleLoader, ClipLoader, ClockLoader, DotLoader, GridLoader, RingLoader } from 'react-spinners'
+
+import './spinner.scss'
 const Spinner = () => {
   return (
-    <div>
-      <RingLoader color="red" speedMultiplier={5}/>
+    <div className="flex flex-col justify-center items-center min-h-screen w-full text-center">
+      <div><GridLoader className="flex flex-col  w-full"	color="black" speedMultiplier={2}/></div>
     </div>
   )
 }

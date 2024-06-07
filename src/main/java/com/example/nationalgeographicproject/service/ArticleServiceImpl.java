@@ -13,9 +13,13 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.util.Base64;
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -26,90 +30,103 @@ public class ArticleServiceImpl implements ArticleService {
     private final CategoryRepository categoryRepository;
 
     @Override
-    public ArticleResponseDto addArticle(long categoryId, CreateArticleDto dto) {
-        System.out.println("addArticle. dto:"+dto);
+    public ArticleResponseDto addArticleToCategory(long categoryId, CreateArticleDto dto, MultipartFile imageFile) throws IOException {
         var entity = modelMapper.map(dto, Article.class);
-        System.out.println("addArticle. article category:"+entity.getCategory());
-        System.out.println("addArticle. article title:"+entity.getTitle());
-        System.out.println("addArticle. article desc.:"+entity.getDescription());
-        // Find the category by its ID
+        if (imageFile != null && !imageFile.isEmpty()) {
+            entity.setImageData(imageFile.getBytes());
+        }
+
         var category = categoryRepository.findById(categoryId)
                 .orElseThrow(() -> new EntityNotFoundException("Category not found with id: " + categoryId));
 
-        // Set the category for the article
         entity.setCategory(category);
 
-        // Save the article
         var saved = articleRepository.save(entity);
-
-        // Add the article to the category's articles set
         category.getArticles().add(saved);
-
-        // Update the category in the repository
         categoryRepository.save(category);
+        ArticleResponseDto response=modelMapper.map(saved,ArticleResponseDto.class);
+        response.setImageData(Base64.getEncoder().encodeToString(saved.getImageData()));
+        return response;
+    }
 
+    @Override
+    public Article saveArticle(Article article) {
+        return articleRepository.save(article);
+    }
+
+    @Override
+    public ArticleResponseDto addArticle(CreateArticleDto dto, MultipartFile imageFile) throws IOException {
+        var entity = modelMapper.map(dto, Article.class);
+        if (imageFile != null && !imageFile.isEmpty()) {
+            entity.setImageData(imageFile.getBytes());
+        }
+
+        var saved = articleRepository.save(entity);
         return modelMapper.map(saved, ArticleResponseDto.class);
     }
 
-    // Other methods remain unchanged
-
-
-    @Override
-    public Collection<ArticleResponseDto> getAll() {
-        var all=articleRepository.findAll();
-        return all.stream().map(m-> modelMapper.map(m, ArticleResponseDto.class)).toList();
+    public List<ArticleResponseDto> getAllArticles() {
+        List<Article> articles = articleRepository.findAll();
+        return articles.stream().map(article -> {
+            ArticleResponseDto dto = modelMapper.map(article, ArticleResponseDto.class);
+            String base64Image = (article.getImageData() != null)
+                    ? Base64.getEncoder().encodeToString(article.getImageData())
+                    : null;
+            dto.setImageData(base64Image);
+            return dto;
+        }).collect(Collectors.toList());
     }
 
-    /**
-     * @param pageNo
-     * @param pageSize
-     * @return
-     */
 
     @Override
     public Collection<ArticleResponseDto> getPage(int pageNo, int pageSize) {
-
-        Pageable pageable= PageRequest.of(pageNo,pageSize);
-
-        Page<Article> page= articleRepository.findAll(pageable);
-        List<Article> articleList= page.getContent();
+        Pageable pageable = PageRequest.of(pageNo, pageSize);
+        Page<Article> page = articleRepository.findAll(pageable);
+        List<Article> articleList = page.getContent();
         return articleList.stream()
-                .map(p-> modelMapper.map(p, ArticleResponseDto.class))
+                .map(p -> modelMapper.map(p, ArticleResponseDto.class))
                 .toList();
     }
 
     @Override
     public ArticleResponseDto getArticleById(long id) {
-        Article article= getArticleEntityOrElseThrow(id);
-        return modelMapper.map(article, ArticleResponseDto.class);
+        Article article=getArticleEntityOrElseThrow(id);
+        ArticleResponseDto responseDto=modelMapper.map(article,ArticleResponseDto.class);
+
+
+        String base64Image= (article.getImageData() !=null)
+                ?Base64.getEncoder().encodeToString(article.getImageData()):null;
+        assert base64Image != null;
+        responseDto.setImageData(base64Image);
+
+     return responseDto;
+
     }
+
+
 
     private Article getArticleEntityOrElseThrow(long id) {
         return articleRepository.findById(id)
                 .orElseThrow(
-                        ResourceNotFoundException
-                                .newInstance("Post", "id", id)
-                ); //()->new ResourceNotFoundException()
+                        () -> new ResourceNotFoundException("Article", "id", id)
+                );
     }
 
     @Override
     public ArticleResponseDto updateArticleById(long id, CreateArticleDto dto) {
-        Article article=getArticleEntityOrElseThrow(id);
+        Article article = getArticleEntityOrElseThrow(id);
         article.setContent(dto.getContent());
         article.setTitle(dto.getTitle());
         article.setDescription(dto.getDescription());
-        article.setTags(article.getTags());
         article.setCategory(article.getCategory());
-        var saved=articleRepository.save(article);
-        return modelMapper.map(saved,ArticleResponseDto.class);
+        var saved = articleRepository.save(article);
+        return modelMapper.map(saved, ArticleResponseDto.class);
     }
-
 
     @Override
     public ArticleResponseDto deleteArticleById(long id) {
-        Article article=getArticleEntityOrElseThrow(id);
+        Article article = getArticleEntityOrElseThrow(id);
         articleRepository.deleteById(id);
-        return modelMapper.map(article,ArticleResponseDto.class);
+        return modelMapper.map(article, ArticleResponseDto.class);
     }
-
 }
