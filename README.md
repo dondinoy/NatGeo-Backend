@@ -10,17 +10,23 @@ National Geographic Articles App - Spring Boot Backend
     Maven for dependency management, and ModelMapper for entity-to-DTO conversion.
   
 * project Structure:    
-    controller: REST controllers to handle HTTP requests.
-    service: Business logic and service layer.
-    repository: Data access layer to interact with the database.
-    entity: Entity classes representing database tables.
-    dto: Data Transfer Objects for transferring data between layers.
-    config: Configuration files for setting up the application context.
+    *controller: REST controllers to handle HTTP requests
+
+   *service: Business logic and service layer.
+
+    *repository: Data access layer to interact with the database.
+
+    *entity: Entity classes representing database tables.
+
+    *dto: Data Transfer Objects for transferring data between layers.
+
+    *config: Configuration files for setting up the application context.
 
 * Features:
-    CRUD Operations: Create, Read, Update, and Delete operations
+   * CRUD Operations: Create, Read, Update, and Delete operations
     for National Geographic articles.
-    Entity-DTO Mapping: Utilizes ModelMapper for seamless conversion
+
+    *Entity-DTO Mapping: Utilizes ModelMapper for seamless conversion
     between entities and DTOs.
   
  * OOP Principles:
@@ -29,11 +35,11 @@ National Geographic Articles App - Spring Boot Backend
     Maven Build: Manages dependencies and builds the project efficiently.
   
 * Project Structure:
-    controller: REST controllers to handle HTTP requests.
-    service: Business logic and service layer.
-    repository: Data access layer to interact with the database.
-    model: Entity classes representing database tables.
-    dto: Data Transfer Objects for transferring data between layers.
-    config: Configuration files for setting up the application context.
+    *controller: REST controllers to handle HTTP requests.
+    *service: Business logic and service layer.
+    *repository: Data access layer to interact with the database.
+    *model: Entity classes representing database tables.
+    *dto: Data Transfer Objects for transferring data between layers.
+    *config: Configuration files for setting up the application context.
 
     
