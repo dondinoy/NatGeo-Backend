@@ -12,9 +12,11 @@ National Geographic Articles App - Spring Boot Backend
     Maven for dependency management, and ModelMapper for entity-to-DTO conversion.
   
 * Project Structure:
+* 
     * controller: REST controllers to handle HTTP requests
     * service: Business logic and service layer.
     * repository: Data access layer to interact with the database.
+    * JWT Authentication & Authorization: Secures the application endpoints.
     * entity: Entity classes representing database tables.
     * dto: Data Transfer Objects for transferring data between layers.
     * config: Configuration files for setting up the application context.
