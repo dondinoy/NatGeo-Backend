@@ -23,7 +23,7 @@ National Geographic Articles App - Spring Boot Backend
    * CRUD Operations: Create, Read, Update, and Delete operations
     for National Geographic articles.
 
-    *Entity-DTO Mapping: Utilizes ModelMapper for seamless conversion
+   * Entity-DTO Mapping: Utilizes ModelMapper for seamless conversion
     between entities and DTOs.
   
  * OOP Principles:
