@@ -1,6 +1,7 @@
 National Geographic Articles App - Spring Boot Backend
 
 * Overview:
+  
     This project is a Spring Boot backend application designed to manage
     and display a collection of National Geographic articles.
     
@@ -9,10 +10,11 @@ National Geographic Articles App - Spring Boot Backend
     It leverages Lombok for boilerplate code reduction, 
     Maven for dependency management, and ModelMapper for entity-to-DTO conversion.
   
-* project Structure:    
+* project Structure:
+     
     *controller: REST controllers to handle HTTP requests
 
-   *service: Business logic and service layer.
+    *service: Business logic and service layer.
 
     *repository: Data access layer to interact with the database.
 
