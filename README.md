@@ -30,9 +30,9 @@ National Geographic Articles App - Spring Boot Backend
   
  * OOP Principles:
    
-    Implements core OOP concepts for maintainable and scalable code.
-    Lombok Integration: Reduces boilerplate code for model classes.
-    Maven Build: Manages dependencies and builds the project efficiently.
+   * Implements core OOP concepts for maintainable and scalable code.
+   * Lombok Integration: Reduces boilerplate code for model classes.
+   * Maven Build: Manages dependencies and builds the project efficiently.
   
 
     
